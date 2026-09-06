@@ -1,54 +1,54 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="CyberOps-X defensive cybersecurity command center">
-  <title>CyberOps-X | Security Command Center</title>
-  <link rel="stylesheet" href="./styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="CyberOps-X cybersecurity operations command center" />
+  <title>CyberOps-X | Security Operations Center</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <aside class="sidebar">
-    <div class="brand"><span class="brand-mark">CX</span><div><strong>CyberOps-X</strong><small>Security Command Center</small></div></div>
-    <nav aria-label="Primary navigation">
-      <a class="active" href="#dashboard">Dashboard</a>
-      <a href="#investigations">Investigations</a>
-      <a href="#vulnerabilities">Vulnerability Scanner</a>
-      <a href="#phishing">Phishing Analyzer</a>
-      <a href="#network">Network / GIS</a>
-      <a href="#evidence">Evidence</a>
-      <a href="#reports">Reports</a>
-      <a href="#projects">Projects</a>
-      <a href="#settings">Settings</a>
-    </nav>
-    <div class="sidebar-footer"><span class="status-dot"></span> Platform online<br><small>Telemetry: demo mode</small></div>
-  </aside>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">CX</span><div><strong>CyberOps-X</strong><small>SECURITY OPERATIONS</small></div></div>
+      <nav aria-label="Primary navigation">
+        <button class="nav-item active" data-view="dashboard">◈ <span>Dashboard</span></button>
+        <button class="nav-item" data-view="investigations">⌕ <span>Investigations</span></button>
+        <button class="nav-item" data-view="vulnerabilities">△ <span>Vulnerability Scanner</span></button>
+        <button class="nav-item" data-view="phishing">✉ <span>Phishing Analyzer</span></button>
+        <button class="nav-item" data-view="network">⌁ <span>Network / GIS</span></button>
+        <button class="nav-item" data-view="evidence">▣ <span>Evidence & Forensics</span></button>
+        <button class="nav-item" data-view="reports">▤ <span>Reports</span></button>
+        <button class="nav-item" data-view="projects">▦ <span>Projects</span></button>
+        <button class="nav-item" data-view="settings">⚙ <span>Settings</span></button>
+      </nav>
+      <div class="sidebar-footer"><span class="status-dot"></span> Platform status <strong>Foundation</strong></div>
+    </aside>
 
-  <main class="main" id="dashboard">
-    <header class="topbar"><div><p class="eyebrow">SECURITY OPERATIONS</p><h1>Command Center</h1></div><div class="top-actions"><span class="env-badge">DEVELOPMENT</span><button class="icon-btn" aria-label="Notifications">●</button><div class="avatar">AO</div></div></header>
+    <main class="main">
+      <header class="topbar"><div><span class="eyebrow">SECURITY COMMAND CENTER</span><h1 id="page-title">Operations Dashboard</h1></div><div class="top-actions"><span class="environment">DEMO / DEVELOPMENT</span><button class="icon-button" title="Notifications">◔</button><div class="avatar">AG</div></div></header>
 
-    <section class="hero-card"><div><span class="live-pill"><i></i> SYSTEM STATUS</span><h2>Defensive operations overview</h2><p>One workspace for investigations, authorized scanning, phishing analysis, network visibility and evidence workflows.</p></div><div class="hero-meta"><span>LAST SYNC</span><strong>—</strong><small>No live telemetry connected</small></div></section>
+      <section id="dashboard" class="view active-view">
+        <div class="hero"><div><span class="eyebrow">CYBEROPS-X FOUNDATION</span><h2>Unified security visibility.</h2><p>One workspace for authorized scanning, phishing analysis, investigations, network intelligence and evidence workflows.</p></div><div class="hero-badge">● SYSTEM READY</div></div>
+        <div class="metric-grid">
+          <article class="metric"><span>ACTIVE INVESTIGATIONS</span><strong>04</strong><small>Demo workspace</small></article>
+          <article class="metric"><span>OPEN FINDINGS</span><strong>12</strong><small>Demo data · not live telemetry</small></article>
+          <article class="metric"><span>ANALYSIS SERVICES</span><strong>04</strong><small>Planned integration points</small></article>
+          <article class="metric"><span>PLATFORM HEALTH</span><strong>100%</strong><small>Foundation layer</small></article>
+        </div>
+        <div class="panel-grid"><article class="panel"><div class="panel-head"><div><span class="eyebrow">ACTIVITY</span><h3>Security operations timeline</h3></div><span class="tag">DEMO</span></div><div class="timeline"><div><b>Platform foundation initialized</b><small>Architecture and repository controls</small><time>Now</time></div><div><b>Service boundaries defined</b><small>Scanner · ML · Auth · GIS</small><time>Today</time></div><div><b>Authentication hardening planned</b><small>Environment-managed secrets</small><time>Next</time></div></div></article><article class="panel"><div class="panel-head"><div><span class="eyebrow">MODULES</span><h3>Integration readiness</h3></div></div><div class="readiness"><div><span>Web UI</span><i><em style="width:80%"></em></i><b>80%</b></div><div><span>API layer</span><i><em style="width:35%"></em></i><b>35%</b></div><div><span>Security services</span><i><em style="width:25%"></em></i><b>25%</b></div><div><span>Testing</span><i><em style="width:10%"></em></i><b>10%</b></div></div></article></div>
+      </section>
 
-    <section class="metrics" aria-label="Security metrics">
-      <article class="metric"><span>Open Investigations</span><strong>04</strong><small>Demo records</small></article>
-      <article class="metric"><span>Assets Monitored</span><strong>18</strong><small>Demo records</small></article>
-      <article class="metric"><span>Vulnerabilities</span><strong>07</strong><small>Demo records</small></article>
-      <article class="metric"><span>Phishing Reviews</span><strong>12</strong><small>Demo records</small></article>
-    </section>
-
-    <section class="grid two-col">
-      <article class="panel"><div class="panel-head"><div><span class="eyebrow">OPERATIONS</span><h3>Investigation queue</h3></div><button class="text-btn">View all →</button></div><div class="table-wrap"><table><thead><tr><th>Case</th><th>Priority</th><th>Status</th><th>Owner</th></tr></thead><tbody><tr><td>CX-1042</td><td><span class="tag critical">High</span></td><td>In review</td><td>Analyst</td></tr><tr><td>CX-1041</td><td><span class="tag warning">Medium</span></td><td>Evidence</td><td>Analyst</td></tr><tr><td>CX-1039</td><td><span class="tag normal">Low</span></td><td>Open</td><td>Unassigned</td></tr></tbody></table></div></article>
-      <article class="panel"><div class="panel-head"><div><span class="eyebrow">ACTIVITY</span><h3>Security timeline</h3></div></div><div class="timeline"><div><b>Phishing analysis</b><span>Sample queued for review</span><time>10:42</time></div><div><b>Scanner</b><span>Authorized lab scan completed</span><time>09:18</time></div><div><b>Authentication</b><span>Admin session established</span><time>08:57</time></div><div><b>GIS</b><span>Network layer loaded</span><time>08:31</time></div></div></article>
-    </section>
-
-    <section class="grid three-col" id="modules">
-      <article class="module-card"><div class="module-icon">VS</div><h3>Vulnerability Scanner</h3><p>Review authorized/lab scan results and service findings.</p><button>Open module →</button></article>
-      <article class="module-card"><div class="module-icon">ML</div><h3>Phishing Analyzer</h3><p>Submit email content to the configured classification service.</p><button>Open module →</button></article>
-      <article class="module-card"><div class="module-icon">GIS</div><h3>Network / GIS</h3><p>Explore network and geographic layers through the GIS integration.</p><button>Open module →</button></article>
-    </section>
-
-    <footer>CyberOps-X · Defensive security platform · Demo telemetry is clearly labelled and not live security data.</footer>
-  </main>
-  <script src="./app.js"></script>
+      <section id="investigations" class="view"><div class="page-card"><span class="eyebrow">CASE MANAGEMENT</span><h2>Investigations</h2><p>Create and track security cases, findings, evidence and analyst notes from a single workspace.</p><div class="empty-state">No live investigations connected yet.<br><small>The backend investigation API will be added in the next phase.</small></div></div></section>
+      <section id="vulnerabilities" class="view"><div class="page-card"><span class="eyebrow">AUTHORIZED ASSESSMENT</span><h2>Vulnerability Scanner</h2><p>Interface reserved for the existing scanner service. Scanning must be limited to systems you own or are explicitly authorized to assess.</p><div class="input-row"><input id="target" placeholder="Authorized lab target" aria-label="Authorized lab target" /><button id="scan-btn">Prepare Scan</button></div><div id="scan-result" class="notice">Scanner service not connected. No scan was executed.</div></div></section>
+      <section id="phishing" class="view"><div class="page-card"><span class="eyebrow">ML ANALYSIS</span><h2>Phishing Analyzer</h2><p>Send email content to the isolated phishing-analysis service and review its prediction with appropriate caution.</p><textarea id="email" placeholder="Paste email content for analysis..."></textarea><button id="analyze-btn">Prepare Analysis</button><div id="phishing-result" class="notice">ML service not connected. No prediction was made.</div></div></section>
+      <section id="network" class="view"><div class="page-card"><span class="eyebrow">GEOSPATIAL INTELLIGENCE</span><h2>Network / GIS</h2><p>The existing GIS viewer will be connected here through a controlled module boundary.</p><div class="map-placeholder"><span>⌁</span><b>GIS integration zone</b><small>PostGIS / Leaflet capability planned</small></div></div></section>
+      <section id="evidence" class="view"><div class="page-card"><span class="eyebrow">DFIR WORKSPACE</span><h2>Evidence & Forensics</h2><p>Evidence metadata, chain-of-custody records and forensic workflow integrations will live here.</p><div class="notice">Evidence storage is not connected in the foundation build.</div></div></section>
+      <section id="reports" class="view"><div class="page-card"><span class="eyebrow">REPORTING</span><h2>Reports</h2><p>Generate consistent findings and investigation reports from normalized module data.</p><div class="notice">Reporting engine is planned; no report is generated by this foundation UI.</div></div></section>
+      <section id="projects" class="view"><div class="page-card"><span class="eyebrow">PORTFOLIO MODULES</span><h2>Projects</h2><div class="project-list"><div><b>Vulnerability Scanner</b><span>Python · Flask · Nmap</span></div><div><b>Phishing Email Detection</b><span>Python · Flask · ML</span></div><div><b>Secure Login System</b><span>Flask · bcrypt · TOTP</span></div><div><b>GIS Viewer</b><span>Node · Express · PostgreSQL/PostGIS</span></div></div></div></section>
+      <section id="settings" class="view"><div class="page-card"><span class="eyebrow">PLATFORM CONFIGURATION</span><h2>Settings</h2><p>Runtime configuration will be managed through environment variables and protected server-side configuration.</p><div class="notice">No secrets are stored in the frontend.</div></div></section>
+    </main>
+  </div>
+  <script src="app.js"></script>
 </body>
 </html>

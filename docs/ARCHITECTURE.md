@@ -1,81 +1,66 @@
 # CyberOps-X Architecture
 
-CyberOps-X is designed as a defensive cybersecurity command-center that brings the user's existing security projects behind one consistent interface.
+## Design goals
 
-## Service boundaries
+1. Keep existing projects independently maintainable.
+2. Expose capabilities through explicit APIs/service adapters.
+3. Centralize authentication, authorization, auditing, and reporting.
+4. Never manufacture live security telemetry.
+5. Keep scanning constrained to authorized environments.
+
+## Request flow
 
 ```text
-                         +----------------------+
-                         |      CyberOps-X      |
-                         |   Web Command Center  |
-                         +----------+-----------+
-                                    |
-                              HTTPS / REST
-                                    |
-                         +----------v-----------+
-                         |   Node/Express API   |
-                         | auth + orchestration |
-                         +---+------+-------+---+
-                             |      |       |
-                +------------+      |       +-------------+
-                |                   |                     |
-        +-------v------+    +------v-------+      +------v------+
-        | Vulnerability|    |   Phishing   |      |  GIS/Network|
-        | Scanner svc  |    |   ML service |      |    module   |
-        | Python       |    | Python       |      | Node/PostGIS|
-        +--------------+    +--------------+      +-------------+
-                                    |
-                             +------v------+
-                             | PostgreSQL  |
-                             | metadata /  |
-                             | audit data  |
-                             +-------------+
+Browser
+  -> Frontend route
+  -> API client
+  -> Node/Express API
+  -> authentication + authorization middleware
+  -> module controller
+  -> service adapter
+  -> Python/GIS service or PostgreSQL/PostGIS
+  -> normalized response
+  -> UI
 ```
 
-## Existing project integration
+## Module boundaries
 
-- `Vulnerability-Scanner-Mini-Project`: authorized/lab vulnerability-scanning capability.
-- `Phishing-Email-Detection-Model`: phishing-email classification capability.
-- `Secure-Login-System`: authentication concepts including bcrypt and TOTP; secrets must be redesigned before reuse.
-- `gis-viewer`: GIS/network visualization capability using Node/Express and PostGIS.
-- `vs-password`: password-strength utility/reference.
+### Vulnerability Scanner
+The existing Python/Flask scanner becomes an isolated capability. The platform should pass only explicitly authorized/lab targets and normalize scan findings into a common finding schema.
 
-The projects should be integrated through service boundaries rather than copied into one large codebase.
+### Phishing Analyzer
+The existing ML model remains a Python capability. CyberOps-X should send email text for analysis and display the returned prediction/probabilities as an analysis result, without claiming that a model is infallible.
 
-## Security principles
+### Identity & Access
+The previous login project demonstrates bcrypt and TOTP concepts, but its hard-coded Flask secret must not be copied. CyberOps-X uses environment-managed secrets, strict session/token handling, input validation, and role checks.
 
-1. Never commit `.env`, credentials, tokens, local databases, or Python bytecode.
-2. Secrets are supplied through environment variables.
-3. Scanner functionality is intended only for systems the operator is authorized to assess.
-4. Demo telemetry must be explicitly labelled as demo; the dashboard must not fabricate live security events.
-5. Authentication and authorization are centralized at the API boundary.
-6. Audit events should record important security actions without storing passwords or bearer tokens.
+### Network / GIS
+The existing GIS viewer already uses Node/Express, PostgreSQL/PostGIS, JWT, bcrypt, validation, Helmet, rate limiting, and logging. Its functionality should be integrated through a module boundary rather than duplicated.
 
-## Initial implementation phases
+## Common security finding model
 
-### Phase 1 — Foundation
+```text
+id
+module
+severity
+status
+title
+summary
+asset
+observed_at
+source
+metadata
+```
 
-- Professional SOC-style dashboard shell.
-- Secure repository hygiene.
-- Environment configuration template.
-- Module navigation and consistent design system.
+This creates one consistent shape for scanner, phishing, investigation, and future detection results.
 
-### Phase 2 — API and authentication
+## Data handling
 
-- Express API structure.
-- Input validation and security headers.
-- Authentication with environment-managed secrets.
-- Role-based authorization and audit logging.
+- Credentials and signing keys are configuration, not source code.
+- Local databases are development artifacts and must stay out of Git.
+- Logs must avoid passwords, tokens, and unnecessary personal data.
+- Uploaded evidence should have controlled storage and metadata rather than being embedded in application code.
 
-### Phase 3 — Existing tool integration
+## Deployment direction
 
-- Scanner service adapter.
-- Phishing analyzer adapter.
-- GIS/PostGIS adapter.
-- Normalized results and report generation.
-
-### Phase 4 — Validation
-
-- Unit/API tests.
-- Dependency and secret checks.
-- Documentation and deployment configuration.
+Development can run the frontend, API, Python services, and PostgreSQL independently. Production can containerize each service and place the API behind a reverse proxy with TLS.
